@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-// initialize the weigth matrix W with the patterns 
+// initialize the weigth matrix W with the patterns
 void printw(int **W, int N)
 {
 
@@ -33,13 +33,13 @@ void weigths(int **W, int *x0, int *x1, int *x2, int *x3, int *x4, int *x5, int 
 // calculation of sum over j of W * S
 
 void mul(int **W, int *s, int *h, int N)
-{ 
-  
+{
+
   for (int i=0; i<N; i++)
   {
     int sum=0;
     for (int j=0; j<N; j++)
-    { 
+    {
       sum += W[i][j] * s[j];
     }
     h[i] = sum;
@@ -81,7 +81,7 @@ int readfile(string file, int *v1, int col, int N)
     std::ifstream infile(file);
     int a1, a2, a3, a4, a5;
     int row=0;
-   
+
     while(infile >> a1 >> a2 >> a3 >> a4 >> a5 ) {
         std::cout << a1 << a2 << a3 << a4 << a5 << endl;
         v1[(row*col) + 0] = a1;
@@ -93,11 +93,11 @@ int readfile(string file, int *v1, int col, int N)
    }
 
    for (int i=0; i<N; i++)
-   { 
+   {
      if (v1[i] == 0)
        v1[i] = -1;
      cout << v1[i];
-  
+
      if (((i+1)%col) == 0 )
        cout << endl;
    }
@@ -107,22 +107,23 @@ int readfile(string file, int *v1, int col, int N)
 
 int main(void)
 {
-  int N = 35;
+  int N = 40;
   int col = 5;
   int *x0 = new int[N];
   int *x1 = new int[N];
   int *x2 = new int[N];
   int *x3 = new int[N];
   int *x4 = new int[N];
+  int *x5 = new int[N];
 
   cout << "iterations " << endl;
 
-  readfile("m.txt", x0,  col, N);
-  readfile("i.txt", x1,  col, N);
-  readfile("g.txt", x2,  col, N);
-  readfile("u.txt", x3,  col, N);
-  readfile("e.txt", x4,  col, N);
-  readfile("l.txt", x5,  col, N);
+  readfile("M.txt", x0,  col, N);
+  readfile("I.txt", x1,  col, N);
+  readfile("G.txt", x2,  col, N);
+  readfile("U.txt", x3,  col, N);
+  readfile("E.txt", x4,  col, N);
+  readfile("L.txt", x5,  col, N);
 
   // pattern 0
 /*  x0[0] = 1;
@@ -143,7 +144,7 @@ int main(void)
     W[i] = new int[N];
   }
 
-  
+
   for (int i=0; i<N; i++)
     for (int j=0; j<N; j++)
       W[i][j]=0;
@@ -153,7 +154,7 @@ int main(void)
 
   int *s = new int[N]; // allocation memory for s
 
-  readfile("m.txt", s,  col, N);
+  readfile("M.txt", s,  col, N);
 
   // start configuration
 /*  s[0] = -1;
@@ -161,7 +162,7 @@ int main(void)
   s[2] = -1;
   s[3] = -1;
 */
- 
+
   int E = energy(W,s,N);
   cout << " energy of initial configuration : " << E << endl;
 
@@ -181,7 +182,7 @@ int main(void)
 
   int result, count;
   count = 0;
-   
+
   do
   {
 
@@ -192,7 +193,7 @@ int main(void)
 
     mul(W,s,h,N);
 
-   
+
     for (int j=0; j<N; j++)
     {
       if (h[j] !=0)
@@ -235,7 +236,7 @@ int main(void)
 
   E = energy(W,s,N);
   cout << " energy of end configuration : " << E << endl;
- 
+
   delete[] x0;
   delete[] x1;
   delete[] s;

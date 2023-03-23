@@ -2,7 +2,7 @@
 #include <fstream>
 using namespace std;
 
-// initialize the weigth matrix W with the patterns 
+// initialize the weigth matrix W with the patterns
 void printw(int **W, int N)
 {
 
@@ -31,13 +31,13 @@ void weigths(int **W, int *x0, int *x1, int *x2, int *x3, int N)
 // calculation of sum over j of W * S
 
 void mul(int **W, int *s, int *h, int N)
-{ 
-  
+{
+
   for (int i=0; i<N; i++)
   {
     int sum=0;
     for (int j=0; j<N; j++)
-    { 
+    {
       sum += W[i][j] * s[j];
     }
     h[i] = sum;
@@ -79,7 +79,7 @@ int readfile(string file, int *v1, int col, int N)
     std::ifstream infile(file);
     int a1, a2, a3, a4, a5;
     int row=0;
-   
+
     while(infile >> a1 >> a2 >> a3 >> a4 >> a5 ) {
         std::cout << a1 << a2 << a3 << a4 << a5 << endl;
         v1[(row*col) + 0] = a1;
@@ -91,11 +91,11 @@ int readfile(string file, int *v1, int col, int N)
    }
 
    for (int i=0; i<N; i++)
-   { 
+   {
      if (v1[i] == 0)
        v1[i] = -1;
      cout << v1[i];
-  
+
      if (((i+1)%col) == 0 )
        cout << endl;
    }
@@ -142,7 +142,7 @@ int main(void)
     W[i] = new int[N];
   }
 
-  
+
   for (int i=0; i<N; i++)
     for (int j=0; j<N; j++)
       W[i][j]=0;
@@ -160,7 +160,7 @@ int main(void)
   s[2] = -1;
   s[3] = -1;
 */
- 
+
   int E = energy(W,s,N);
   cout << " energy of initial configuration : " << E << endl;
 
@@ -180,7 +180,7 @@ int main(void)
 
   int result, count;
   count = 0;
-   
+
   do
   {
 
@@ -191,7 +191,7 @@ int main(void)
 
     mul(W,s,h,N);
 
-   
+
     for (int j=0; j<N; j++)
     {
       if (h[j] !=0)
@@ -234,7 +234,7 @@ int main(void)
 
   E = energy(W,s,N);
   cout << " energy of end configuration : " << E << endl;
- 
+
   delete[] x0;
   delete[] x1;
   delete[] s;

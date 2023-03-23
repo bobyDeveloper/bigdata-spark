@@ -154,7 +154,7 @@ int main(void)
 
   int *s = new int[N]; // allocation memory for s
 
-  readfile("M.txt", s,  col, N);
+  readfile("x1.txt", s,  col, N);
 
   // start configuration
 /*  s[0] = -1;

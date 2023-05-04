@@ -1,0 +1,11 @@
+{
+
+"name": "node-image",
+"private": true,
+"version": "1.0.0",
+"description": "Docker image - node",
+"author": "Miguel Rivera <zS21004509@estudiantes.uv.mx>",
+"dependencies": {
+"express": "3.3.4"
+}
+}
